@@ -1,0 +1,25 @@
+# application.yml
+spring:
+  application:
+    name: TP API
+
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: http://localhost:8081/resource-server
+        client:
+          articles-client:
+            registration:
+              client-id: clientIdTpApi
+              client-secret: clientSecretTpApi
+              client-name: Auth TP Api
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types:
+                - client_credentials
+              redirect-uris: []
+
+server:
+  port: 8081
+  servlet:
+    context-path: /resource-server
