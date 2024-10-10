@@ -1,25 +1,34 @@
 package mds.tp.api.hackr.tpApi.configuration;
 
+import mds.tp.api.hackr.tpApi.services.CustomUserDetailsService;
+import mds.tp.api.hackr.tpApi.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.web.SecurityFilterChain;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    private final UserService userService;
 
+    @Autowired
+    public SecurityConfiguration(UserService userService) {
+        this.userService = userService;
+    }
 
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new CustomUserDetailsService(this.userService);
+    }
 
-
-   // Config auth Oauth2
     @Bean
     @Order(1)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -32,15 +41,14 @@ public class SecurityConfiguration {
 
     @Bean
     @Order(2)
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .anyRequest().authenticated()
-                )
-                .httpBasic(withDefaults())
-                .csrf(AbstractHttpConfigurer::disable);
-
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                .requestMatchers("/generatePassword").permitAll()
+                .requestMatchers("/register").permitAll()
+                .requestMatchers("/login").permitAll()
+        );
         return http.build();
     }
 }

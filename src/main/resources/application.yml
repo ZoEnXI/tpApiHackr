@@ -3,23 +3,37 @@ spring:
   application:
     name: TP API
 
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: avnadmin
+    password: AVNS_BSr9766HIY8LwvYm9WI
+    url: jdbc:postgresql://pg-tpapi-libmanager.l.aivencloud.com:14937/defaultdb?ssl=require
+
   security:
     oauth2:
       authorizationserver:
         issuer: http://localhost:8081/resource-server
         client:
-          articles-client:
+          token-standard:
             registration:
-              client-id: clientIdTpApi
-              client-secret: clientSecretTpApi
-              client-name: Auth TP Api
+              client-id: clientIdTpApiStandard
+              client-secret: clientSecretTpApiStandard
+              client-name: Auth TP Api Standard
               client-authentication-methods:
                 - client_secret_basic
               authorization-grant-types:
                 - client_credentials
               redirect-uris: []
+          token-admin:
+            registration:
+              client-id: clientIdTpApiAdmin
+              client-secret: clientSecretTpApiAdmin
+              client-name: Auth TP Api Admin
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types:
+                - client_credentials
+              redirect-uris: [ ]
 
 server:
   port: 8081
-  servlet:
-    context-path: /resource-server
