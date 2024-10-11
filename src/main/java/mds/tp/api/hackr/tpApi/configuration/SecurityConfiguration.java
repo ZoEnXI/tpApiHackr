@@ -1,7 +1,7 @@
 package mds.tp.api.hackr.tpApi.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import mds.tp.api.hackr.tpApi.services.CustomUserDetailsService;
-import mds.tp.api.hackr.tpApi.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,13 +11,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfiguration {
 
     private final CustomUserDetailsService customUserDetailsService;
@@ -45,8 +45,7 @@ public class SecurityConfiguration {
     @Bean
     @Order(2)
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder =
-                http.getSharedObject(AuthenticationManagerBuilder.class);
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
 
         authenticationManagerBuilder
                 .userDetailsService(customUserDetailsService)
@@ -59,10 +58,11 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
-                        .requestMatchers("/generatePassword").hasRole("user")
+                        .requestMatchers("/generatePassword").hasAnyRole("user", "admin")
                         .requestMatchers("/test").hasRole("admin")
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(new CustomTokenFilter(new ObjectMapper()), UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session
                         .maximumSessions(1)
                 );

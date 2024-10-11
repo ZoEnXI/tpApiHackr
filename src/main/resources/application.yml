@@ -37,6 +37,7 @@ spring:
               authorization-grant-types:
                 - client_credentials
               redirect-uris: [ ]
+
 server:
   port: 8081
 

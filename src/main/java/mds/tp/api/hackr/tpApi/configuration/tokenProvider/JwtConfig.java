@@ -1,4 +1,4 @@
-package mds.tp.api.hackr.tpApi.configuration.token;
+package mds.tp.api.hackr.tpApi.configuration.tokenProvider;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
