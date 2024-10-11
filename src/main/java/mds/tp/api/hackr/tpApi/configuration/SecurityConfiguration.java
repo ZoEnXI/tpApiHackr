@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class SecurityConfiguration {
 
     private final CustomUserDetailsService customUserDetailsService;
@@ -58,7 +58,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
-                        .requestMatchers("/generatePassword").hasAnyRole("user", "admin")
+                        .requestMatchers("/generatePassword", "/spamEmail").hasAnyRole("user", "admin")
                         .requestMatchers("/test").hasRole("admin")
                         .anyRequest().authenticated()
                 )

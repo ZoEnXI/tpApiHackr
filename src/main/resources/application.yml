@@ -2,9 +2,26 @@ spring:
   application:
     name: TP API
 
+
+
   jpa:
     hibernate:
       ddl-auto: update
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: apihackr@gmail.com
+    password: ztzo vvgu ssnc kxme
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    protocol: smtp
 
   security:
     oauth2:
