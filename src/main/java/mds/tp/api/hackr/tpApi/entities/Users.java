@@ -13,9 +13,8 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "user")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User {
+public class Users {
 
     @Id
     @UuidGenerator
@@ -33,7 +32,7 @@ public class User {
      * @param username String
      * @param password String
      */
-    public User(String username, String password) {
+    public Users(String username, String password) {
         this.username = username;
         this.password = password;
         this.role = RoleName.USER;

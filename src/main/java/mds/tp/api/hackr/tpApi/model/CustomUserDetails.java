@@ -1,6 +1,6 @@
 package mds.tp.api.hackr.tpApi.model;
 
-import mds.tp.api.hackr.tpApi.entities.User;
+import mds.tp.api.hackr.tpApi.entities.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,26 +10,26 @@ import java.util.Set;
 
 public class CustomUserDetails implements UserDetails {
 
-    private final User user;
+    private final Users users;
 
-    public CustomUserDetails(User user) {
-        this.user = user;
+    public CustomUserDetails(Users users) {
+        this.users = users;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return Set.of(new SimpleGrantedAuthority("ROLE_" + this.user.getRole().getValue()));
+        return Set.of(new SimpleGrantedAuthority("ROLE_" + this.users.getRole().getValue()));
     }
 
     @Override
     public String getPassword() {
-        return this.user.getPassword();
+        return this.users.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return this.users.getUsername();
     }
 
     @Override

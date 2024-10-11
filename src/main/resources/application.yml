@@ -1,4 +1,3 @@
-# application.yml
 spring:
   application:
     name: TP API
@@ -8,6 +7,10 @@ spring:
     username: avnadmin
     password: AVNS_BSr9766HIY8LwvYm9WI
     url: jdbc:postgresql://pg-tpapi-libmanager.l.aivencloud.com:14937/defaultdb?ssl=require
+
+  jpa:
+    hibernate:
+      ddl-auto: update
 
   security:
     oauth2:
@@ -34,6 +37,9 @@ spring:
               authorization-grant-types:
                 - client_credentials
               redirect-uris: [ ]
-
 server:
   port: 8081
+
+logging:
+  level:
+    org.springframework.security: DEBUG

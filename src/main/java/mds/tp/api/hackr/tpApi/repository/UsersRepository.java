@@ -1,13 +1,13 @@
 package mds.tp.api.hackr.tpApi.repository;
 
-import mds.tp.api.hackr.tpApi.entities.User;
+import mds.tp.api.hackr.tpApi.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UsersRepository extends JpaRepository<Users, String> {
 
-    Optional<User> findByUsername(String username);
+    Optional<Users> findByUsername(String username);
 }

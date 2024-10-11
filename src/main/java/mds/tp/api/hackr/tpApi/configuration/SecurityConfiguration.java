@@ -1,7 +1,7 @@
 package mds.tp.api.hackr.tpApi.configuration;
 
 import mds.tp.api.hackr.tpApi.services.CustomUserDetailsService;
-import mds.tp.api.hackr.tpApi.services.UserService;
+import mds.tp.api.hackr.tpApi.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,16 +17,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private final UserService userService;
+    private final UsersService usersService;
 
     @Autowired
-    public SecurityConfiguration(UserService userService) {
-        this.userService = userService;
+    public SecurityConfiguration(UsersService usersService) {
+        this.usersService = usersService;
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new CustomUserDetailsService(this.userService);
+        return new CustomUserDetailsService(this.usersService);
     }
 
     @Bean
@@ -34,10 +34,13 @@ public class SecurityConfiguration {
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
 
-        http.formLogin(AbstractHttpConfigurer::disable);
+        http
+                .securityMatcher("/oauth2/**")
+                .formLogin(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
+
 
     @Bean
     @Order(2)
@@ -45,10 +48,8 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                .requestMatchers("/generatePassword").permitAll()
-                .requestMatchers("/register").permitAll()
-                .requestMatchers("/login").permitAll()
-        );
+                        .requestMatchers("/generatePassword", "/register", "/login").permitAll()
+                );
         return http.build();
     }
 }
