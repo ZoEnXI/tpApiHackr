@@ -2,12 +2,6 @@ spring:
   application:
     name: TP API
 
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    username: avnadmin
-    password: AVNS_BSr9766HIY8LwvYm9WI
-    url: jdbc:postgresql://pg-tpapi-libmanager.l.aivencloud.com:14937/defaultdb?ssl=require
-
   jpa:
     hibernate:
       ddl-auto: update
