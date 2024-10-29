@@ -18,8 +18,6 @@ public class MailService {
     @Value("${spring.mail.username}")
     private String mail;
 
-    private String gifUrl = "https://c.tenor.com/9r1rE1-uyFYAAAAd/tenor.gif";
-
     private final JavaMailSender emailSender;
 
     @Autowired
@@ -27,18 +25,19 @@ public class MailService {
         this.emailSender = emailSender;
     }
 
-    public void sendEmail(String emailUser) {
+    public void sendEmail(final String emailUser, final String subject, final String text, final String gifUrl) {
         try {
 
             MimeMessage message = this.emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(this.mail, "La Chine");
             helper.setTo(emailUser);
-            helper.setSubject("ALERTE");
+            helper.setSubject(subject);
             helper.setText("<html>" +
                     "<body>" +
                     "<h1>ALERTE</h1>" +
-                    "<img src='" + this.gifUrl + "' alt='Social Credit GIF' style='width: 100%; max-width: 600px;'/>" +
+                    "<p>" + text + "</p>" +
+                    "<img src='" + gifUrl + "'style='width: 100%; max-width: 600px;'/>" +
                     "</body>" +
                     "</html>", true);
 

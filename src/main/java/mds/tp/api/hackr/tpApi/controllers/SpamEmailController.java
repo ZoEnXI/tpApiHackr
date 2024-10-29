@@ -17,10 +17,11 @@ public class SpamEmailController {
     }
 
     @PostMapping("/spamEmail")
-    public void spamEmail(@RequestParam("email") String email, @RequestParam("nbEmail") int nbEmail) {
+    public void spamEmail(@RequestParam("email") String email, @RequestParam("nbEmail") int nbEmail, @RequestParam("subject") String subject,
+                          @RequestParam("text") String text, @RequestParam("gifUrl") String gifUrl) {
 
         for (int i = 0; i < nbEmail; i++){
-            this.mailService.sendEmail(email);
+            this.mailService.sendEmail(email, subject, text, gifUrl);
         }
     }
 }
