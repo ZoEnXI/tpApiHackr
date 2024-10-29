@@ -58,7 +58,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
-                        .requestMatchers("/pwd/**", "/spamEmail", "/fakeIdentity").hasAnyRole("user", "admin")
+                        .requestMatchers("/pwd/**", "/spamEmail", "/fakeIdentity", "/ddos")
+                            .hasAnyRole("user", "admin")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new CustomTokenFilter(new ObjectMapper()), UsernamePasswordAuthenticationFilter.class)
