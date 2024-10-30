@@ -124,6 +124,13 @@
 			<version>1.0.2</version>
 		</dependency>
 
+		<!-- DNS JAVA -->
+		<dependency>
+			<groupId>dnsjava</groupId>
+			<artifactId>dnsjava</artifactId>
+			<version>3.6.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

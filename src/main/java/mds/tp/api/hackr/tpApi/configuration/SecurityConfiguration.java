@@ -58,7 +58,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
-                        .requestMatchers("/pwd/**", "/spamEmail", "/fakeIdentity", "/ddos")
+                        .requestMatchers("/pwd/**", "/mail/**", "/fakeIdentity", "/ddos", "/subdomainFinder/**")
                             .hasAnyRole("user", "admin")
                         .anyRequest().authenticated()
                 )
