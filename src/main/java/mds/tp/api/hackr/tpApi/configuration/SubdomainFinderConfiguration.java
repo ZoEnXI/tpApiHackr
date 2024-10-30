@@ -6,14 +6,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class VerifyMailClientConfig {
+public class SubdomainFinderConfiguration {
 
-    @Value("${hunter.api-key}")
+    @Value("${securityTrail.apiKey}")
     private String apiKey;
 
     @Bean
     public RequestInterceptor verifyMailApiKeyInterceptor() {
-        return template -> template.uri(template.url() + "&api_key=" + this.apiKey);
+        return template -> template.header("APIKEY", this.apiKey);
     }
-}
 
+}

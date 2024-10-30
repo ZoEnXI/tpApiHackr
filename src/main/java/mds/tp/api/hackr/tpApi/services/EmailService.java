@@ -50,7 +50,6 @@ public class EmailService {
         byte[] a = response.body().asInputStream().readAllBytes();
         JsonNode jsonBody =  objectMapper.readTree(a);
         return jsonBody.get("data").get("status").asText();
-
     }
 
     public void sendEmail(final String emailUser, final String subject, final String text, final String gifUrl) {
