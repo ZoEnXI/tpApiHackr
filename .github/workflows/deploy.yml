@@ -31,6 +31,9 @@ jobs:
           SECURITY_TRAIL_API_KEY: ${{ secrets.SECURITY_TRAIL_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
+      - name: Build application
+        run: mvn clean package
+
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
