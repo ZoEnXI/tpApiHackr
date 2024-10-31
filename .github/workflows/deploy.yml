@@ -21,7 +21,7 @@ jobs:
 
       - name: Prepare application.yml with secrets
         run: |
-          cp src/main/resources/application-template.yml src/main/resources/application.yml
+          cp src/main/deploy-resources/application-template.yml src/main/resources/application.yml
           envsubst < src/main/deploy-resources/application-template.yml > src/main/resources/application.yml
         env:
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
