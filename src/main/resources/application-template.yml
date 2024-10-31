@@ -34,8 +34,8 @@ spring:
         client:
           token-standard:
             registration:
-              client-id: ${CLIENT_ID_TP_API_STANDARD}
-              client-secret: ${CLIENT_SECRET_TP_API_STANDARD}
+              client-id: clientIdTpApiStandard
+              client-secret: clientSecretTpApiStandard
               client-name: Auth TP Api Standard
               client-authentication-methods:
                 - client_secret_basic
@@ -44,8 +44,8 @@ spring:
               redirect-uris: []
           token-admin:
             registration:
-              client-id: ${CLIENT_ID_TP_API_ADMIN}
-              client-secret: ${CLIENT_SECRET_TP_API_ADMIN}
+              client-id: clientIdTpApiAdmin
+              client-secret: clientSecretTpApiAdmin
               client-name: Auth TP Api Admin
               client-authentication-methods:
                 - client_secret_basic
