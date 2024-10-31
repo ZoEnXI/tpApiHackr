@@ -1,0 +1,50 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Prepare application.yml with secrets
+        run: |
+          cp src/main/resources/application-template.yml src/main/resources/application.yml
+          envsubst < src/main/resources/application-template.yml > src/main/resources/application.yml
+        env:
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_URL: ${{ secrets.DB_URL }}
+          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          CLIENT_ID_TP_API_STANDARD: ${{ secrets.CLIENT_ID_TP_API_STANDARD }}
+          CLIENT_SECRET_TP_API_STANDARD: ${{ secrets.CLIENT_SECRET_TP_API_STANDARD }}
+          CLIENT_ID_TP_API_ADMIN: ${{ secrets.CLIENT_ID_TP_API_ADMIN }}
+          CLIENT_SECRET_TP_API_ADMIN: ${{ secrets.CLIENT_SECRET_TP_API_ADMIN }}
+          HUNTER_URL: ${{ secrets.HUNTER_URL }}
+          SECURITY_TRAIL_API_KEY: ${{ secrets.SECURITY_TRAIL_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Copy files to VPS
+        env:
+          SSHPASS: ${{ secrets.VPS_PASSWORD }}
+        run: |
+          sshpass -e scp -o StrictHostKeyChecking=no target/myapp-0.0.1-SNAPSHOT.jar root@${{ secrets.VPS_HOST }}:~/app
+
+      - name: Restart application on VPS
+        env:
+          SSHPASS: ${{ secrets.VPS_PASSWORD }}
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_HOST }} << 'EOF'
+          sudo systemctl stop myapp.service || true
+          sudo systemctl start myapp.service
+          EOF

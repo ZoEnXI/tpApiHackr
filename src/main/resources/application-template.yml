@@ -2,6 +2,11 @@ spring:
   application:
     name: TP API
 
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
 
   jpa:
     hibernate:
@@ -10,8 +15,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: apihackr@gmail.com
-    password: ztzo vvgu ssnc kxme
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
     test-connection: true
     properties:
       mail:
@@ -29,8 +34,8 @@ spring:
         client:
           token-standard:
             registration:
-              client-id: clientIdTpApiStandard
-              client-secret: clientSecretTpApiStandard
+              client-id: ${CLIENT_ID_TP_API_STANDARD}
+              client-secret: ${CLIENT_SECRET_TP_API_STANDARD}
               client-name: Auth TP Api Standard
               client-authentication-methods:
                 - client_secret_basic
@@ -39,17 +44,27 @@ spring:
               redirect-uris: []
           token-admin:
             registration:
-              client-id: clientIdTpApiAdmin
-              client-secret: clientSecretTpApiAdmin
+              client-id: ${CLIENT_ID_TP_API_ADMIN}
+              client-secret: ${CLIENT_SECRET_TP_API_ADMIN}
               client-name: Auth TP Api Admin
               client-authentication-methods:
                 - client_secret_basic
               authorization-grant-types:
                 - client_credentials
-              redirect-uris: [ ]
+              redirect-uris: []
 
 server:
   port: 8081
+
+hunter:
+  url: ${HUNTER_URL}
+
+securityTrail:
+  url: https://api.securitytrails.com/v1/domain/
+  apiKey: ${SECURITY_TRAIL_API_KEY}
+
+openai:
+  apiKey: ${OPENAI_API_KEY}
 
 logging:
   level:
