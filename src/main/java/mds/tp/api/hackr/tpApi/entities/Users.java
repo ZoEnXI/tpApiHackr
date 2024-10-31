@@ -32,6 +32,7 @@ public class Users {
 
     /**
      * Constructor used for registration
+     *
      * @param username String
      * @param password String
      */

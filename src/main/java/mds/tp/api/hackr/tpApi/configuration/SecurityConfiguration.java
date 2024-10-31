@@ -59,7 +59,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
                         .requestMatchers("/pwd/**", "/mail/**", "/fakeIdentity", "/ddos", "/subdomainFinder/**")
-                            .hasAnyRole("user", "admin")
+                        .hasAnyRole("user", "admin")
+                        .requestMatchers("/log/**").hasRole("admin")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new CustomTokenFilter(new ObjectMapper()), UsernamePasswordAuthenticationFilter.class)

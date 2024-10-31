@@ -36,7 +36,7 @@ public class EmailService {
 
     public String msgToReturn(final String email) throws IOException {
 
-        if(StringUtils.equals(verifyEmail(email), "valid")){
+        if (StringUtils.equals(verifyEmail(email), "valid")) {
             return "Email valid";
         }
         return "Email invalid";
@@ -48,7 +48,7 @@ public class EmailService {
         ObjectMapper objectMapper = new ObjectMapper();
         Response response = this.verifyMailClient.verifyMail(email);
         byte[] a = response.body().asInputStream().readAllBytes();
-        JsonNode jsonBody =  objectMapper.readTree(a);
+        JsonNode jsonBody = objectMapper.readTree(a);
         return jsonBody.get("data").get("status").asText();
     }
 

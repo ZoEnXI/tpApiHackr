@@ -88,6 +88,6 @@ public class CustomTokenFilter extends OncePerRequestFilter {
         String[] chunks = token.split("\\.");
         Base64.Decoder decoder = Base64.getUrlDecoder();
 
-       return new String(decoder.decode(chunks[1]));
+        return new String(decoder.decode(chunks[1]));
     }
 }
