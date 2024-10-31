@@ -47,7 +47,7 @@ jobs:
         env:
           SSHPASS: ${{ secrets.VPS_PASSWORD }}
         run: |
-          sshpass -e scp -o StrictHostKeyChecking=no target/tpApi-0.0.1.jar root@${{ secrets.VPS_HOST }}:~/tpApi.jar
+          sshpass -e scp -o StrictHostKeyChecking=no target/tpApi-0.0.1.jar root@${{ secrets.VPS_HOST }}:~/app/tpApi.jar
 
       - name: Restart application on VPS
         env:
