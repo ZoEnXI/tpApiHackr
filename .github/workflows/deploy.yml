@@ -53,7 +53,7 @@ jobs:
         env:
           SSHPASS: ${{ secrets.VPS_PASSWORD }}
         run: |
-          sshpass -e ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_HOST }} << 'EOF'
+          sshpass -e ssh -t -o StrictHostKeyChecking=no root@${{ secrets.VPS_HOST }} << 'EOF'
           sudo systemctl stop myapp.service || true
           sudo systemctl start myapp.service
           EOF
