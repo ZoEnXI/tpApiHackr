@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
-@RequestMapping("/mail")
+@RequestMapping("/email")
 public class EmailController {
 
     private final EmailService emailService;
@@ -22,7 +22,7 @@ public class EmailController {
         this.emailService = emailService;
     }
 
-    @PostMapping("/spam-mail")
+    @PostMapping("/spam-email")
     public ResponseEntity<String> spamEmail(@RequestParam("email") String email, @RequestParam("nbEmail") int nbEmail, @RequestParam("subject") String subject,
                           @RequestParam("text") String text, @RequestParam("gifUrl") String gifUrl,
                               @RequestParam("from") String from, HttpSession httpSession) {
@@ -35,7 +35,7 @@ public class EmailController {
         return ResponseEntity.ok("Mails sent");
     }
 
-    @GetMapping("/verify-mail")
+    @GetMapping("/verify-email")
     public ResponseEntity<String> verifyEmail(@RequestParam("email") String email, HttpSession httpSession) throws IOException {
         MDC.put("userLogged", httpSession.getAttribute("userLogged").toString());
         MDC.put("functionality", "verifyEmail");
