@@ -2,7 +2,6 @@ package mds.tp.api.hackr.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.gson.JsonObject;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import mds.tp.api.hackr.services.ScrapperService;
@@ -28,7 +27,7 @@ public class ScrapperController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<JsonNode> get(
+    public ResponseEntity<JsonNode> getInformation(
             @RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName,
             @RequestParam("country") String country,

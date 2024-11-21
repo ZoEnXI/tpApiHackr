@@ -29,13 +29,9 @@ jobs:
           DB_URL: ${{ secrets.DB_URL }}
           EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          CLIENT_ID_TP_API_STANDARD: ${{ secrets.CLIENT_ID_TP_API_STANDARD }}
-          CLIENT_SECRET_TP_API_STANDARD: ${{ secrets.CLIENT_SECRET_TP_API_STANDARD }}
-          CLIENT_ID_TP_API_ADMIN: ${{ secrets.CLIENT_ID_TP_API_ADMIN }}
-          CLIENT_SECRET_TP_API_ADMIN: ${{ secrets.CLIENT_SECRET_TP_API_ADMIN }}
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
           HUNTER_URL: ${{ secrets.HUNTER_URL }}
           SECURITY_TRAIL_API_KEY: ${{ secrets.SECURITY_TRAIL_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Build application
         run: mvn clean package
