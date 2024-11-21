@@ -66,6 +66,9 @@ securityTrail:
 thisPersonDoesNotExist:
   url: https://thispersondoesnotexist.com/
 
+serpApi:
+  apiKey: ${SERPAPI_API_KEY}
+
 logging:
   level:
     org.springframework.security: DEBUG

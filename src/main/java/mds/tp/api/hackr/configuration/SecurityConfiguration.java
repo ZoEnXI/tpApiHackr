@@ -58,7 +58,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
                         .requestMatchers("/pwd/**", "/mail/**", "/fake-identity", "/ddos", "/subdomain/**",
-                                "/person-picture-generator/**")
+                                "/person-picture-generator/**", "/scrapper/**")
                         .hasAnyRole("user", "admin")
                         .requestMatchers("/log/**").hasRole("admin")
                         .anyRequest().authenticated()
