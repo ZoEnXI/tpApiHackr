@@ -54,7 +54,7 @@ spring:
               redirect-uris: []
 
 server:
-  address: http://enzo.lavaud.angers.mds-project.fr
+  port: 8081
 
 hunter:
   url: ${HUNTER_URL}
