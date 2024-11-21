@@ -25,7 +25,7 @@ public class LogAdminController {
         this.logAdminService = logAdminService;
     }
 
-    @GetMapping("/all-Logs")
+    @GetMapping("/all-logs")
     public ResponseEntity<List<JsonNode>> getAllLogs(HttpSession httpSession) throws IOException {
         MDC.put("userLogged", httpSession.getAttribute("userLogged").toString());
         MDC.put("functionality", "getAllLogs");
