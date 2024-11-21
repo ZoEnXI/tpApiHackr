@@ -63,8 +63,8 @@ securityTrail:
   url: https://api.securitytrails.com/v1/domain/
   apiKey: ${SECURITY_TRAIL_API_KEY}
 
-openai:
-  apiKey: ${OPENAI_API_KEY}
+thisPersonDoesNotExist:
+  url: https://thispersondoesnotexist.com/
 
 logging:
   level:

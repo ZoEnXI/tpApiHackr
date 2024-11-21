@@ -24,8 +24,7 @@ public class SecurityConfiguration {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public SecurityConfiguration(CustomUserDetailsService customUserDetailsService,
-                                 PasswordEncoder passwordEncoder) {
+    public SecurityConfiguration(CustomUserDetailsService customUserDetailsService, PasswordEncoder passwordEncoder) {
         this.customUserDetailsService = customUserDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -58,7 +57,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
-                        .requestMatchers("/pwd/**", "/mail/**", "/fake-identity", "/ddos", "/subdomain/**")
+                        .requestMatchers("/pwd/**", "/mail/**", "/fake-identity", "/ddos", "/subdomain/**",
+                                "/person-picture-generator/**")
                         .hasAnyRole("user", "admin")
                         .requestMatchers("/log/**").hasRole("admin")
                         .anyRequest().authenticated()
