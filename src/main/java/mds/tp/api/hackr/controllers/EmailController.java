@@ -23,14 +23,16 @@ public class EmailController {
     }
 
     @PostMapping("/spam-mail")
-    public void spamEmail(@RequestParam("email") String email, @RequestParam("nbEmail") int nbEmail, @RequestParam("subject") String subject,
-                          @RequestParam("text") String text, @RequestParam("gifUrl") String gifUrl, HttpSession httpSession) {
+        public void spamEmail(@RequestParam("email") String email, @RequestParam("nbEmail") int nbEmail, @RequestParam("subject") String subject,
+                          @RequestParam("text") String text, @RequestParam("gifUrl") String gifUrl,
+                              @RequestParam("from") String from, HttpSession httpSession) {
         MDC.put("userLogged", httpSession.getAttribute("userLogged").toString());
         MDC.put("functionality", "spamEmail");
         for (int i = 0; i < nbEmail; i++) {
-            this.emailService.sendEmail(email, subject, text, gifUrl);
+            this.emailService.sendEmail(email, subject, text, gifUrl, from);
         }
         log.info("Spam mail sent to {}, {} times", email, nbEmail);
+        ResponseEntity.ok("Mails sent");
     }
 
     @GetMapping("/verify-mail")

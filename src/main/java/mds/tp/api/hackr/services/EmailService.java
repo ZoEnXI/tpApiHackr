@@ -52,17 +52,16 @@ public class EmailService {
         return jsonBody.get("data").get("status").asText();
     }
 
-    public void sendEmail(final String emailUser, final String subject, final String text, final String gifUrl) {
+    public void sendEmail(final String emailUser, final String subject, final String text, final String gifUrl, final String from) {
         try {
 
             MimeMessage message = this.emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(this.mail, "La Chine");
+            helper.setFrom(this.mail, from);
             helper.setTo(emailUser);
             helper.setSubject(subject);
             helper.setText("<html>" +
                     "<body>" +
-                    "<h1>ALERTE</h1>" +
                     "<p>" + text + "</p>" +
                     "<img src='" + gifUrl + "'style='width: 100%; max-width: 600px;'/>" +
                     "</body>" +
