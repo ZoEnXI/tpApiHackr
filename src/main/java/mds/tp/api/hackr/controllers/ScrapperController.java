@@ -36,7 +36,7 @@ public class ScrapperController {
     ) throws SerpApiSearchException, JsonProcessingException {
 
         MDC.put("userLogged", httpSession.getAttribute("userLogged").toString());
-        MDC.put("functionality", "generatePwd");
+        MDC.put("functionality", "scrapper");
         log.info("Scrapper request received for {} {} in {} with language {}", firstName, lastName, country, language);
         return ResponseEntity.ok(this.scrapperService.getInformationAboutAPerson(firstName, lastName, country, language));
     }
