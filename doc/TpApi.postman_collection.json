@@ -1,0 +1,563 @@
+{
+	"info": {
+		"_postman_id": "106b0985-a071-4dca-86f4-63c8a37f6eb0",
+		"name": "TpApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14627866",
+		"_collection_link": "https://equipe-0064.postman.co/workspace/equipe-Workspace~c756eb07-e49a-42bb-9351-f7e4b5cf2a09/collection/14627866-106b0985-a071-4dca-86f4-63c8a37f6eb0?action=share&source=collection_link&creator=14627866"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "AllLogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/log/all-logs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"log",
+								"all-logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RequestByActivity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/log/functionality/fakeIdentity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"log",
+								"functionality",
+								"fakeIdentity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/log/username/enzo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"log",
+								"username",
+								"enzo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessTokenUrl",
+						"value": "http://enzo.lavaud.angers.mds-project.fr:8081/oauth2/token",
+						"type": "string"
+					},
+					{
+						"key": "tokenName",
+						"value": "tokenAdmin",
+						"type": "string"
+					},
+					{
+						"key": "refreshRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "tokenRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "authRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "challengeAlgorithm",
+						"value": "S256",
+						"type": "string"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "string"
+					},
+					{
+						"key": "clientSecret",
+						"value": "clientSecretTpApiAdmin",
+						"type": "string"
+					},
+					{
+						"key": "clientId",
+						"value": "clientIdTpApiAdmin",
+						"type": "string"
+					},
+					{
+						"key": "authUrl",
+						"value": "http://localhost:8081/resource-server/oauth2/token",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "client_authentication",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Email",
+					"item": [
+						{
+							"name": "SpamEmail",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/email/spam-email?email=lavaud.enzo@gmail.com&nbEmail=1&subject=test&text=test&gifUrl=https://c.tenor.com/9r1rE1-uyFYAAAAd/tenor.gif&from=test",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"email",
+										"spam-email"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "lavaud.enzo@gmail.com"
+										},
+										{
+											"key": "nbEmail",
+											"value": "1"
+										},
+										{
+											"key": "subject",
+											"value": "test"
+										},
+										{
+											"key": "text",
+											"value": "test"
+										},
+										{
+											"key": "gifUrl",
+											"value": "https://c.tenor.com/9r1rE1-uyFYAAAAd/tenor.gif"
+										},
+										{
+											"key": "from",
+											"value": "test"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "VerifyEmail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/email/verify-email?email=lavaud.enzo@gmail.com",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"email",
+										"verify-email"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "lavaud.enzo@gmail.com"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Password",
+					"item": [
+						{
+							"name": "Generator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/pwd/generate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pwd",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checker",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/pwd/check-pwd?pwd=p=àjhvcdretfgioà)hvguykoà)jivgui",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pwd",
+										"check-pwd"
+									],
+									"query": [
+										{
+											"key": "pwd",
+											"value": "p=àjhvcdretfgioà)hvguykoà)jivgui"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DDOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ddos?url=www.google.fr&nbRequest=100",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ddos"
+							],
+							"query": [
+								{
+									"key": "url",
+									"value": "www.google.fr",
+									"description": "Url to ddos"
+								},
+								{
+									"key": "nbRequest",
+									"value": "100",
+									"description": "The number of request to send"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PictureGenerator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/person-picture-generator/generate-picture",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"person-picture-generator",
+								"generate-picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FakeIdentity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/fake-identity?language=En-en",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"fake-identity"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "En-en"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scrapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/scrapper/search?firstName=enzo&lastName=lavaud&country=fr&language=fr",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"scrapper",
+								"search"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "enzo"
+								},
+								{
+									"key": "lastName",
+									"value": "lavaud"
+								},
+								{
+									"key": "country",
+									"value": "fr"
+								},
+								{
+									"key": "language",
+									"value": "fr"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "clientId",
+						"value": "clientIdTpApiStandard",
+						"type": "string"
+					},
+					{
+						"key": "clientSecret",
+						"value": "clientSecretTpApiStandard",
+						"type": "string"
+					},
+					{
+						"key": "tokenName",
+						"value": "tokenUser",
+						"type": "string"
+					},
+					{
+						"key": "accessTokenUrl",
+						"value": "http://enzo.lavaud.angers.mds-project.fr:8081/oauth2/token",
+						"type": "string"
+					},
+					{
+						"key": "refreshRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "tokenRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "authRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "challengeAlgorithm",
+						"value": "S256",
+						"type": "string"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "string"
+					},
+					{
+						"key": "authUrl",
+						"value": "http://localhost:8081/resource-server/oauth2/token",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "client_authentication",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/login?username=enzo2&password=azerty",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "enzo2"
+						},
+						{
+							"key": "password",
+							"value": "azerty"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/register?username=enzo3&password=azerty",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "enzo3"
+						},
+						{
+							"key": "password",
+							"value": "azerty"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://enzo.lavaud.angers.mds-project.fr:8081",
+			"type": "string"
+		}
+	]
+}
