@@ -18,6 +18,7 @@ public class ClientConfig {
                 .clientId("clientIdTpApiStandard")
                 .clientSecret(passwordEncoder.encode("clientSecretTpApiStandard"))
                 .clientName("Auth TP Api Standard")
+                .scope("user.read")
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .build();
 
@@ -25,6 +26,7 @@ public class ClientConfig {
                 .clientId("clientIdTpApiAdmin")
                 .clientSecret(passwordEncoder.encode("clientSecretTpApiAdmin"))
                 .clientName("Auth TP Api Admin")
+                .scope("admin.read")
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .build();
 
