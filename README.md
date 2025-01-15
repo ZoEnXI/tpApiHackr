@@ -1,3 +1,39 @@
-# tpApiHackr
+# TP Api Hackr
 
-http://enzo.lavaud.angers.mds-project.fr:8081/
+L'application est déployé sur mon VPS.  
+La doc (swagger et collection postman) se trouve dans le répertoire **docs**.
+
+## Faire tourner l'application en local:
+
+### Prérequis :
+
+- Java 17 (JDK)
+- Un IDE :  IntelliJ IDEA est recommandé
+- Le fichier de properties (envoyé par teams)
+
+### Installation :
+
+#### 1. Cloner le projet
+
+```git clone git@github.com:ZoEnXI/tpApiHackr.git```
+
+#### 2. Importer le projet dans votre IDE et parametrage :
+
+Sur IntellIJ IDEA :
+ 
+    - File > Open > tpApiHackr
+    - File > Project Structure > Project > Project SDK > 17 (télécharger le JDK 17 si non installé)
+    - File > Project Structure > Project > Project language level > SDK Default
+
+    - Dans l'onglet maven (le M sur la barre à droite) > Reload all Maven projects
+    - Dans l'onglet maven (le M sur la barre à droite) > tpApi > Lifecycle > clean
+    - Dans l'onglet maven (le M sur la barre à droite) > tpApi > Lifecycle > install
+
+Copier le fichier de properties dans le répertoire resources
+    
+    - Copier le fichier de properties dans le répertoire resources : src/main/resources
+
+#### 3. Lancer l'application
+    
+    - src/main/java/mds/tp/api/hackr/TpApiApplication.java puis click droit > Run 'TpApiApplication.main()'
+
