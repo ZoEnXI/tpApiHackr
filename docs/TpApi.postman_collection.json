@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "106b0985-a071-4dca-86f4-63c8a37f6eb0",
+		"_postman_id": "24dd14fc-7713-487c-a6d3-76ba9ba11ff4",
 		"name": "TpApi",
+		"description": "Pensez à se reconnecter entre Admin et User car ce ne sont pas les mêmes token entre ces deux rôles.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14627866",
-		"_collection_link": "https://equipe-0064.postman.co/workspace/equipe-Workspace~c756eb07-e49a-42bb-9351-f7e4b5cf2a09/collection/14627866-106b0985-a071-4dca-86f4-63c8a37f6eb0?action=share&source=collection_link&creator=14627866"
+		"_exporter_id": "14627866"
 	},
 	"item": [
 		{
@@ -479,7 +479,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/login?username=enzo2&password=azerty",
+					"raw": "{{url}}/login?username=enzo&password=azerty",
 					"host": [
 						"{{url}}"
 					],
@@ -489,11 +489,13 @@
 					"query": [
 						{
 							"key": "username",
-							"value": "enzo2"
+							"value": "enzo",
+							"description": "Si besoin de compte admin mettre enzo2"
 						},
 						{
 							"key": "password",
-							"value": "azerty"
+							"value": "azerty",
+							"description": "Si besoin de compte admin mettre enzo2 azerty"
 						}
 					]
 				}

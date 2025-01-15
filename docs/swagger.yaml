@@ -1,0 +1,331 @@
+openapi: "3.0.0"
+info:
+  title: "tpApiHackr API"
+  description: "tpApiHackr API"
+  version: "1.0.0"
+servers:
+  - url: "http://enzo.lavaud.angers.mds-project.fr:8081"
+security:
+  - OAuth2: []
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: "Oauth2 authentification"
+      flows:
+        clientCredentials:
+          tokenUrl: "http://enzo.lavaud.angers.mds-project.fr:8081/oauth2/token"
+      
+  schemas:
+    Person:
+      type: "object"
+      description: "Represents a fake identity with various details."
+      properties:
+        firstName:
+          type: "string"
+          description: "The first name of the person."
+        lastName:
+          type: "string"
+          description: "The last name of the person."
+        age:
+          type: "integer"
+          description: "The age of the person."
+    JsonNode:
+      type: "object"
+      description: "Represents a generic JSON data structure."
+      properties:
+        key:
+          type: "string"
+          description: "The key name."
+        value:
+          type: "string"
+          description: "The corresponding value."
+paths:
+  /ddos:
+    get:
+      summary: "GET ddos"
+      operationId: "ddos"
+      parameters:
+        - name: "url"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "nbRequest"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /email/spam-email:
+    post:
+      summary: "POST email/spam-email"
+      operationId: "spamEmail"
+      parameters:
+        - name: "email"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "nbEmail"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "subject"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "text"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "gifUrl"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "from"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /email/verify-email:
+    get:
+      summary: "GET email/verify-email"
+      operationId: "verifyEmail"
+      parameters:
+        - name: "email"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /fake-identity:
+    get:
+      summary: "GET fake-identity"
+      operationId: "getFakeIdentity"
+      parameters:
+        - name: "language"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Person"
+  /pwd/check-pwd:
+    post:
+      summary: "POST pwd/check-pwd"
+      operationId: "checkPwd"
+      parameters:
+        - name: "pwd"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /pwd/generate:
+    get:
+      summary: "GET pwd/generate"
+      operationId: "generatePwd"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /subdomain/find:
+    get:
+      summary: "GET subdomain/find"
+      operationId: "findSubdomains"
+      parameters:
+        - name: "domain"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  type: "string"
+  /log/all-logs:
+    get:
+      summary: "GET log/all-logs"
+      operationId: "getAllLogs"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/JsonNode"
+  /log/functionality/{functionality}:
+    get:
+      summary: "GET log/functionality/{functionality}"
+      operationId: "getLogsByFunctionnality"
+      parameters:
+        - name: "functionality"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/JsonNode"
+  /log/username/{username}:
+    get:
+      summary: "GET log/username/{username}"
+      operationId: "getLogsByUsername"
+      parameters:
+        - name: "username"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/JsonNode"
+  /login:
+    post:
+      summary: "POST login"
+      operationId: "login"
+      parameters:
+        - name: "username"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "password"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /register:
+    post:
+      summary: "POST register"
+      operationId: "register"
+      parameters:
+        - name: "username"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "password"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /person-picture-generator/generate-picture:
+    get:
+      summary: "GET person-picture-generator/generate-picture"
+      operationId: "getPersonPicture"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            image/jpeg:
+              schema:
+                type: "array"
+                items:
+                  type: "string"
+                  format: "byte"
+  /scrapper/search:
+    get:
+      summary: "GET scrapper/search"
+      operationId: "getInformation"
+      parameters:
+        - name: "firstName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "lastName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "country"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "language"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/JsonNode"
