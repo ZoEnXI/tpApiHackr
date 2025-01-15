@@ -3,6 +3,22 @@
 L'application est déployé sur mon VPS.  
 La doc (swagger et collection postman) se trouve dans le répertoire **docs**.
 
+Pour l'utiliser il faut d'abord se connecter avec un compte admin ou user.
+Puis générer le token d'authentification associé.
+
+###User : 
+login : userTest
+Mdp : userTest
+clientId : clientIdTpApiStandard
+clientSecret : clientSecretTpApiStandard
+
+###Admin :
+
+login : adminTest
+Mdp : adminTest
+clientId : clientIdTpApiStandard
+clientSecret : clientSecretTpApiStandard
+
 ## Faire tourner l'application en local:
 
 ### Prérequis :
