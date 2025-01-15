@@ -1,25 +1,18 @@
 # TP Api Hackr
 
 L'application est déployé sur mon VPS.  
-La doc (swagger et collection postman) se trouve dans le répertoire **docs**.
+La doc (swagger et collection postman) se trouve dans le répertoire [docs](docs).
 
-##Utilisation
+## Utilisation
 
 Pour l'utiliser il faut d'abord se connecter avec un compte admin ou user.
 Puis générer le token d'authentification associé.
 
-###User : 
-login : userTest
-Mdp : userTest
-clientId : clientIdTpApiStandard
-clientSecret : clientSecretTpApiStandard
+| Role	  |Login| Password   | Client ID | 	Client Secret         |
+|--------| ----|------------|-----------|------------------------|
+| User	  |userTest	| userTest   |clientIdTpApiStandard	 |clientSecretTpApiStandard|
+| Admin	 |adminTest	| adminTest  | clientIdTpApiStandard	 |clientSecretTpApiStandard|
 
-###Admin :
-
-login : adminTest
-Mdp : adminTest
-clientId : clientIdTpApiStandard
-clientSecret : clientSecretTpApiStandard
 
 ## Faire tourner l'application en local:
 
