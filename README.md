@@ -3,6 +3,8 @@
 L'application est déployé sur mon VPS.  
 La doc (swagger et collection postman) se trouve dans le répertoire **docs**.
 
+##Utilisation
+
 Pour l'utiliser il faut d'abord se connecter avec un compte admin ou user.
 Puis générer le token d'authentification associé.
 
