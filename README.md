@@ -8,6 +8,8 @@ La doc (swagger et collection postman) se trouve dans le répertoire [docs](docs
 Pour l'utiliser il faut d'abord se connecter avec un compte admin ou user.
 Puis générer le token d'authentification associé.
 
+Un token user avec un compte admin ne fonctionne pas et inversement ! 
+
 ## Faire tourner l'application en local:
 
 ### Prérequis :
